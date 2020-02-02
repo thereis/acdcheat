@@ -1,5 +1,5 @@
 interface IRequest {
-  type: 'popupMounted' | 'logger' | 'setToken';
+  type: 'popupMounted' | 'logger';
   value: any;
 }
 
@@ -9,10 +9,6 @@ chrome.runtime.onMessage.addListener(
     let isResponseAsync = true;
 
     switch (request.type) {
-      case 'setToken':
-        console.log('token: ', request.value);
-        break;
-
       case 'logger':
         const { label, value } = request.value;
 
