@@ -10,10 +10,15 @@ import { getToken } from './popup/token';
  * Containers
  */
 import App from './popup/containers/App';
+import { AppProvider } from './popup/popup.context';
 
-const main = async () => {
+chrome.tabs.query({ active: true, currentWindow: true }, async tabs => {
   const token = await getToken();
-  ReactDOM.render(<App token={token} />, document.getElementById('popup'));
-};
 
-main();
+  ReactDOM.render(
+    <AppProvider initialState={{ token }}>
+      <App />
+    </AppProvider>,
+    document.getElementById('popup')
+  );
+});
