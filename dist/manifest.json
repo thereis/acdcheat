@@ -33,6 +33,7 @@
   "permissions": [
     "activeTab",
     "storage",
+    "alarms",
     "*://acdc-staging.avenuecode.io/*",
     "*://acdc2.avenuecode.io/*"
   ]

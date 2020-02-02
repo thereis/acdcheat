@@ -6,7 +6,12 @@ import * as React from 'react';
 import { IDecodedToken } from './token/models/IDecodedToken';
 import { User } from './token/models/IUser';
 
-type Types = 'setToken' | 'setDecodedToken' | 'setUser' | 'resetContext';
+type Types =
+  | 'setToken'
+  | 'setDecodedToken'
+  | 'setUser'
+  | 'resetContext'
+  | 'setAlarms';
 
 export type Action = {
   type: Types;
@@ -19,6 +24,7 @@ type State = Partial<{
   token: string;
   decodedToken: IDecodedToken;
   user: User;
+  alarms: chrome.alarms.Alarm[];
 }>;
 
 const AppStateContext = React.createContext<State | undefined>(undefined);
@@ -34,6 +40,9 @@ const appReducer = (state: State, action: Action): State => {
 
     case 'setUser':
       return { ...state, user: action.value };
+
+    case 'setAlarms':
+      return { ...state, alarms: action.value };
 
     case 'resetContext':
       return {

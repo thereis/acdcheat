@@ -3,19 +3,22 @@ import * as React from 'react';
 /**
  * Dependencies
  */
+import { fetchUser } from '../popup.actions';
 import { useApp } from '../popup.context';
+import { daysToExpire, decodeJWT } from '../token/jwt';
+import { getAllAlarms } from '../alarm';
 
 /**
  * Components
  */
 import { Header } from '../components/Header';
+import { Alarms } from './Alarms';
 
 /**
  * Styles
  */
 import './App.style.scss';
-import { daysToExpire, decodeJWT } from '../token/jwt';
-import { fetchUser } from '../popup.actions';
+import { Entries } from './Entries';
 
 const App: React.FC = props => {
   const [state, dispatch] = useApp();
@@ -42,8 +45,6 @@ const App: React.FC = props => {
       dispatch({ type: 'setDecodedToken', value: token });
     } catch (e) {
       setError(e);
-    } finally {
-      setIsLoading(false);
     }
   }, [state.token]);
 
@@ -51,7 +52,14 @@ const App: React.FC = props => {
     if (!state.decodedToken || !state.token) return;
 
     const _load = async () => {
+      // Fetch user data
       dispatch(await fetchUser(state.token));
+
+      // Fetch alarms
+      const alarms = await getAllAlarms();
+      dispatch({ type: 'setAlarms', value: alarms });
+
+      setIsLoading(false);
     };
 
     _load();
@@ -63,7 +71,7 @@ const App: React.FC = props => {
     );
   }
 
-  if (!state.token || !state.decodedToken || !state.user) {
+  if (!state.token || !state.decodedToken || !state.user || isLoading) {
     return (
       <div className="app loading">The application is bootstrapping...</div>
     );
@@ -72,6 +80,8 @@ const App: React.FC = props => {
   return (
     <div className="app">
       <Header />
+      <Entries />
+      <Alarms />
     </div>
   );
 };

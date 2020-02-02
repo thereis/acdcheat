@@ -9,12 +9,38 @@ import { clearExtensionStorage } from '../storage';
 /**
  * Components
  */
-import { Header as HeaderComponent } from '@ac-ui/react-components';
+import { Subheader, Header as HeaderComponent } from '@ac-ui/react-components';
 
 /**
  * Styles
  */
 import './Header.style.scss';
+
+const DayHint: React.FC = () => {
+  const [hint, setHint] = React.useState<string>();
+
+  React.useEffect(() => {
+    let theHint;
+
+    const currentDate = new Date();
+    const dayOfWeek = currentDate.getDay();
+
+    switch (dayOfWeek) {
+      case 0: // sunday
+      case 5: // friday
+      case 6: // saturday
+        theHint = 'Submit the week!';
+        break;
+      default:
+        theHint = "It's all good <3.";
+        break;
+    }
+
+    setHint(theHint);
+  }, []);
+
+  return <>{hint}</>;
+};
 
 export const Header: React.FC = props => {
   const [state, dispatch] = useApp();
@@ -52,6 +78,10 @@ export const Header: React.FC = props => {
         }
         isPopoverOpen={isOpen}
         onPopoverClose={handleClose}
+      />
+      <Subheader
+        title={<span>Welcome {user.name.split(' ')[0]}!</span>}
+        content={<DayHint />}
       />
     </div>
   );

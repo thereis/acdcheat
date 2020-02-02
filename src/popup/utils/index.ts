@@ -1,3 +1,5 @@
+import * as moment from 'moment';
+
 export const getCurrentChromeTab = (): Promise<chrome.tabs.Tab> =>
   new Promise((resolve, reject) => {
     return chrome.tabs.query({ active: true, currentWindow: true }, tabs => {
@@ -18,4 +20,11 @@ export const getTokenFromCurrentTab = (
 
 export const sendLog = (label, value) => {
   chrome.runtime.sendMessage({ type: 'logger', value: { label, value } });
+};
+
+export const getWeekRange = () => {
+  const startOfWeek = moment().startOf('week');
+  const endOfWeek = moment().endOf('week');
+
+  return [startOfWeek, endOfWeek].map(item => item.format('YYYY-MM-DD'));
 };
