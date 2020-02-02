@@ -1,0 +1,39 @@
+{
+  "manifest_version": 2,
+  "name": "ACDCheat",
+  "description": "Fast and scheduled entries.",
+  "version": "0.0.1",
+
+  "browser_action": {
+    "default_icon": "icon16.png",
+    "default_popup": "popup.html"
+  },
+
+  "background": {
+    "scripts": ["js/eventPage.js"],
+    "persistent": false
+  },
+
+  "content_scripts": [
+    {
+      "matches": [
+        "*://acdc-staging.avenuecode.io/*",
+        "*://acdc2.avenuecode.com/*"
+      ],
+      "js": ["js/contentScript.js"]
+    }
+  ],
+
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  },
+
+  "permissions": [
+    "activeTab",
+    "storage",
+    "*://acdc-staging.avenuecode.io/*",
+    "*://acdc2.avenuecode.io/*"
+  ]
+}
