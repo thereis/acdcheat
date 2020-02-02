@@ -10,6 +10,7 @@ import { useApp } from '../popup.context';
  */
 import './App.style.scss';
 import { daysToExpire, decodeJWT } from '../token/jwt';
+import { fetchUser } from '../popup.actions';
 
 const App: React.FC = props => {
   const [state, dispatch] = useApp();
@@ -29,7 +30,7 @@ const App: React.FC = props => {
       const daysLeft = daysToExpire(state.token);
 
       if (daysLeft <= 1) {
-        throw new Error('Go to the ACDC page to revalidate your token.');
+        throw new Error('Go to the ACDC page to revalidate your access token.');
       }
 
       dispatch({ type: 'setToken', value: token });
@@ -41,15 +42,25 @@ const App: React.FC = props => {
     }
   }, [state.token]);
 
+  React.useEffect(() => {
+    if (!state.decodedToken || !state.token) return;
+
+    const _load = async () => {
+      dispatch(await fetchUser(state.token));
+    };
+
+    _load();
+  }, [state.token, state.decodedToken]);
+
   if (error) {
-    return <>{error.message}</>;
+    return <>Failed to initialize: {error.message}</>;
   }
 
-  if (isLoading || !state.decodedToken) {
+  if (isLoading || !state.decodedToken || !state.user) {
     return <>The application is bootstrapping...</>;
   }
 
-  return <div className="app">Welcome to ACDCheat</div>;
+  return <div className="app">Welcome to ACDCheat {state.user?.name}</div>;
 };
 
 export default App;
