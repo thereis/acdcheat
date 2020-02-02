@@ -1,6 +1,11 @@
 import * as React from 'react';
 
-type Types = 'setToken';
+/**
+ * Models
+ */
+import { IDecodedToken } from './token/models/IDecodedToken';
+
+type Types = 'setToken' | 'setDecodedToken';
 
 export type Action = {
   type: Types;
@@ -11,15 +16,17 @@ type Dispatch = (action: Action) => void;
 
 type State = Partial<{
   token: string;
+  decodedToken: IDecodedToken;
 }>;
-
-type CountProviderProps = { children: React.ReactNode };
 
 const AppStateContext = React.createContext<State | undefined>(undefined);
 const AppDispatchContext = React.createContext<Dispatch | undefined>(undefined);
 
 const appReducer = (state: State, action: Action) => {
   switch (action.type) {
+    case 'setDecodedToken':
+      return { ...state, decodedToken: action.value };
+
     case 'setToken':
       return { ...state, token: action.value };
 
