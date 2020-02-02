@@ -5,7 +5,7 @@
   "version": "0.0.1",
 
   "browser_action": {
-    "default_icon": "icon16.png",
+    "default_icon": "icon.png",
     "default_popup": "popup.html"
   },
 
@@ -25,9 +25,9 @@
   ],
 
   "icons": {
-    "16": "acdcIcon.png",
-    "48": "acdcIcon.png",
-    "128": "acdcIcon.png"
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
   },
 
   "permissions": [
