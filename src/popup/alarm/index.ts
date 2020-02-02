@@ -29,7 +29,3 @@ export const clearAllAlarms = (): Promise<boolean> =>
   new Promise((resolve, reject) => {
     chrome.alarms.clearAll(() => resolve(true));
   });
-
-chrome.alarms.onAlarm.addListener(alarm => {
-  console.log('alarm: ', alarm);
-});

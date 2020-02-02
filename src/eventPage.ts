@@ -1,3 +1,5 @@
+import { sendLog } from './popup/utils';
+
 interface IRequest {
   type: 'popupMounted' | 'logger';
   value: any;
@@ -22,3 +24,9 @@ chrome.runtime.onMessage.addListener(
     return isResponseAsync;
   }
 );
+
+chrome.alarms.onAlarm.addListener(alarm => {
+  console.log('alarm: ', alarm);
+
+  sendLog('alarm', 'oi');
+});

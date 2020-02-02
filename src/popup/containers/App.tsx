@@ -19,6 +19,8 @@ import { Alarms } from './Alarms';
  */
 import './App.style.scss';
 import { Entries } from './Entries';
+import { Switch, Route } from 'react-router-dom';
+import { DayHint } from '../components/DayHint';
 
 const App: React.FC = props => {
   const [state, dispatch] = useApp();
@@ -80,8 +82,21 @@ const App: React.FC = props => {
   return (
     <div className="app">
       <Header />
-      <Entries />
-      <Alarms />
+
+      <Switch>
+        <Route
+          exact
+          path="/"
+          component={() => (
+            <>
+              <DayHint />
+              Click in your avatar image to navigate.
+            </>
+          )}
+        />
+        <Route path="/entries" component={Entries} />
+        <Route path="/alarms" component={Alarms} />
+      </Switch>
     </div>
   );
 };

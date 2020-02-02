@@ -3,8 +3,9 @@ import * as React from 'react';
 /**
  * Components
  */
-import { Table } from '@ac-ui/react-components';
+import { Subheader, Table } from '@ac-ui/react-components';
 import { useApp } from '../popup.context';
+import { getWeekRange } from '../utils';
 
 export const Entries: React.FC = () => {
   const [state] = useApp();
@@ -16,11 +17,13 @@ export const Entries: React.FC = () => {
     }`
   ]);
 
+  const [start, end] = getWeekRange();
+
   return (
     <>
-      Your week entries:
+      <Subheader title={<span>Entries</span>} content={'Week entries.'} />
       <Table
-        caption={'Week entries'}
+        caption={`${start} to ${end}`}
         headerNames={Array.from(new Set(entries.map(item => item.date)))}
         tableData={allEntries}
       />

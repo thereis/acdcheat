@@ -9,38 +9,13 @@ import { clearExtensionStorage } from '../storage';
 /**
  * Components
  */
-import { Subheader, Header as HeaderComponent } from '@ac-ui/react-components';
+import { Header as HeaderComponent } from '@ac-ui/react-components';
 
 /**
  * Styles
  */
 import './Header.style.scss';
-
-const DayHint: React.FC = () => {
-  const [hint, setHint] = React.useState<string>();
-
-  React.useEffect(() => {
-    let theHint;
-
-    const currentDate = new Date();
-    const dayOfWeek = currentDate.getDay();
-
-    switch (dayOfWeek) {
-      case 0: // sunday
-      case 5: // friday
-      case 6: // saturday
-        theHint = 'Submit the week!';
-        break;
-      default:
-        theHint = "It's all good <3.";
-        break;
-    }
-
-    setHint(theHint);
-  }, []);
-
-  return <>{hint}</>;
-};
+import { Link } from 'react-router-dom';
 
 export const Header: React.FC = props => {
   const [state, dispatch] = useApp();
@@ -64,24 +39,34 @@ export const Header: React.FC = props => {
     <div>
       <HeaderComponent
         title="ACDCheat"
-        popoverToggle={<PopoverToggle />}
-        popoverContent={
-          <p
-            className="dropdown-item text-white"
-            onClick={async () => {
-              await clearExtensionStorage();
-              dispatch({ type: 'resetContext', value: undefined });
-            }}
-          >
-            Logout
-          </p>
-        }
         isPopoverOpen={isOpen}
         onPopoverClose={handleClose}
-      />
-      <Subheader
-        title={<span>Welcome {user.name.split(' ')[0]}!</span>}
-        content={<DayHint />}
+        popoverToggle={<PopoverToggle />}
+        popoverContent={
+          <>
+            <Link to="/" onClick={handleClose}>
+              <p className="dropdown-item text-white">Home</p>
+            </Link>
+
+            <Link to="/entries" onClick={handleClose}>
+              <p className="dropdown-item text-white">Entries</p>
+            </Link>
+
+            <Link to="/alarms" onClick={handleClose}>
+              <p className="dropdown-item text-white">Alarms</p>
+            </Link>
+
+            <p
+              className="dropdown-item text-white"
+              onClick={async () => {
+                await clearExtensionStorage();
+                dispatch({ type: 'resetContext', value: undefined });
+              }}
+            >
+              Logout
+            </p>
+          </>
+        }
       />
     </div>
   );

@@ -3,16 +3,15 @@ import * as React from 'react';
 /**
  * Dependencies
  */
-import { getAllAlarms, createNewAlarm, clearAllAlarms } from '../alarm';
+import { clearAllAlarms } from '../alarm';
 
 /**
  * Components
  */
-import { Table, Button } from '@ac-ui/react-components';
+import { Subheader, Table, Button } from '@ac-ui/react-components';
 import { useApp } from '../popup.context';
 
 interface IProps {}
-
 export const Alarms: React.FC<IProps> = props => {
   const [state, dispatch] = useApp();
 
@@ -20,7 +19,7 @@ export const Alarms: React.FC<IProps> = props => {
     if (!state.alarms) return;
 
     const _load = async () => {
-      //   const alarm = createNewAlarm('teste-lucas');
+      // const alarm = createNewAlarm('teste-lucas');
       //   const alarms = await getAllAlarms();
       //   console.log('alarms: ', alarms);
     };
@@ -34,16 +33,19 @@ export const Alarms: React.FC<IProps> = props => {
 
   return (
     <>
+      <Subheader
+        title={<span>Alarms</span>}
+        content={'Friendly reminder to fill your ACDC.'}
+      />
+
       <Table
         caption={'Alarms'}
         headerNames={['Alarm Name']}
         tableData={[state.alarms.map(alarm => alarm.name)]}
       />
-
       <Button classList={['btn-sm', 'btn-primary', 'btn-plain']}>
         Create alarm
       </Button>
-
       {state.alarms.length > 0 && (
         <Button
           onClick={_handleClearAlarms}
