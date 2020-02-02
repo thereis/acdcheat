@@ -1,3 +1,6 @@
+/**
+ * Dependencies
+ */
 import { getFromExtensionStorage, setToExtensionStorage } from '../storage';
 import { getCurrentChromeTab, getTokenFromCurrentTab } from '../utils';
 

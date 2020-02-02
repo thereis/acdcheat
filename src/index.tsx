@@ -4,12 +4,12 @@ import * as ReactDOM from 'react-dom';
 /**
  * Dependencies
  */
-import { getToken } from './token';
+import { getToken } from './popup/token';
 
 /**
  * Containers
  */
-import App from './containers/App';
+import App from './popup/containers/App';
 
 const main = async () => {
   const token = await getToken();

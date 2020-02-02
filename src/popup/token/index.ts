@@ -1,4 +1,4 @@
-import { getFromExtensionStorage, setToExtensionStorage } from '.';
+import { getFromExtensionStorage, setToExtensionStorage } from '../storage';
 import { getCurrentChromeTab, getTokenFromCurrentTab } from '../utils';
 
 export const getToken = async (): Promise<string> => {
