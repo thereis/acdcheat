@@ -39,7 +39,7 @@
     "webpack-merge": "^4.1.4"
   },
   "dependencies": {
-    "@ac-ui/design-system": "1.0.2",
+    "@ac-ui/design-system": "^1.0.5",
     "@ac-ui/react-components": "^1.0.4",
     "axios": "^0.19.2",
     "bootstrap": "^4.3.1",
