@@ -4,7 +4,7 @@ import * as ReactDOM from 'react-dom';
 /**
  * Dependencies
  */
-import { getToken } from './storage/token';
+import { getToken } from './token';
 
 /**
  * Containers
