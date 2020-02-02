@@ -6,7 +6,7 @@ import * as React from 'react';
 import { IDecodedToken } from './token/models/IDecodedToken';
 import { User } from './token/models/IUser';
 
-type Types = 'setToken' | 'setDecodedToken' | 'setUser';
+type Types = 'setToken' | 'setDecodedToken' | 'setUser' | 'resetContext';
 
 export type Action = {
   type: Types;
@@ -24,7 +24,7 @@ type State = Partial<{
 const AppStateContext = React.createContext<State | undefined>(undefined);
 const AppDispatchContext = React.createContext<Dispatch | undefined>(undefined);
 
-const appReducer = (state: State, action: Action) => {
+const appReducer = (state: State, action: Action): State => {
   switch (action.type) {
     case 'setDecodedToken':
       return { ...state, decodedToken: action.value };
@@ -34,6 +34,13 @@ const appReducer = (state: State, action: Action) => {
 
     case 'setUser':
       return { ...state, user: action.value };
+
+    case 'resetContext':
+      return {
+        decodedToken: undefined,
+        token: undefined,
+        user: undefined
+      };
 
     default: {
       throw new Error(`Unhandled action type: ${action.type}`);

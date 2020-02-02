@@ -6,6 +6,11 @@ import * as React from 'react';
 import { useApp } from '../popup.context';
 
 /**
+ * Components
+ */
+import { Header } from '../components/Header';
+
+/**
  * Styles
  */
 import './App.style.scss';
@@ -53,14 +58,22 @@ const App: React.FC = props => {
   }, [state.token, state.decodedToken]);
 
   if (error) {
-    return <>Failed to initialize: {error.message}</>;
+    return (
+      <div className="app error">Failed to initialize: {error.message}</div>
+    );
   }
 
-  if (isLoading || !state.decodedToken || !state.user) {
-    return <>The application is bootstrapping...</>;
+  if (!state.token || !state.decodedToken || !state.user) {
+    return (
+      <div className="app loading">The application is bootstrapping...</div>
+    );
   }
 
-  return <div className="app">Welcome to ACDCheat {state.user?.name}</div>;
+  return (
+    <div className="app">
+      <Header />
+    </div>
+  );
 };
 
 export default App;

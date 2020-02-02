@@ -13,24 +13,36 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.m?js$/,
+        exclude: /(node_modules|bower_components)/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env']
+          }
+        }
+      },
+      {
         exclude: /node_modules/,
         test: /\.tsx?$/,
         use: 'ts-loader'
       },
       {
-        exclude: /node_modules/,
-        test: /\.scss$/,
+        test: /\.(scss)$/,
         use: [
-          {
-            loader: 'style-loader' // Creates style nodes from JS strings
-          },
-          {
-            loader: 'css-loader' // Translates CSS into CommonJS
-          },
-          {
-            loader: 'sass-loader' // Compiles Sass to CSS
-          }
+          'style-loader',
+          'css-loader',
+          'resolve-url-loader',
+          'sass-loader?sourceMap'
         ]
+      },
+      {
+        test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'url-loader?limit=10000&mimetype=application/font-woff'
+      },
+      {
+        test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+        loader: 'file-loader'
       }
     ]
   },
