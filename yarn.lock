@@ -2,13 +2,6 @@
 # yarn lockfile v1
 
 
-"@ac-ui/design-system@1.0.2":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@ac-ui/design-system/-/design-system-1.0.2.tgz#f8a433dbede86e087dd91c47eb4021abfefdef19"
-  integrity sha512-J1RoqxiWipp4pTUuRnuO8ezw/N0Lyj2dD1emx+WF7HiNeinGYlnZnyvhcT+8Y+CNn55l7ieaJsPm0RM1WJ4A0w==
-  dependencies:
-    bootstrap "4.1.3"
-
 "@ac-ui/design-system@^1.0.5":
   version "1.0.5"
   resolved "https://registry.yarnpkg.com/@ac-ui/design-system/-/design-system-1.0.5.tgz#1707c513256601769e0854e36b96ec22f3ee878d"
@@ -1424,9 +1417,9 @@ acorn-walk@^6.0.1:
   integrity sha512-7evsyfH1cLOCdAzZAd43Cic04yKydNx0cF+7tiA19p1XnLLPU4dpCQOqpjqwokFe//vS0QqfqqjCS2JkiIs0cA==
 
 acorn@^5.5.3:
-  version "5.7.3"
-  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.3.tgz#67aa231bf8812974b85235a96771eb6bd07ea279"
-  integrity sha512-T/zvzYRfbVojPWahDsE5evJdHb3oJoQfFbsrKM7w5Zcs++Tr257tia3BmMP8XYVjp1S9RZXQMh7gao96BlqZOw==
+  version "5.7.4"
+  resolved "https://registry.yarnpkg.com/acorn/-/acorn-5.7.4.tgz#3e8d8a9947d0599a1796d10225d7432f4a4acf5e"
+  integrity sha512-1D++VG7BhrtvQpNbBzovKNc1FLGGEE/oGe7b9xJm/RFHMBeUaUGpluV9RLjZa47YFdPcDAenEYuq9pQPcMdLJg==
 
 acorn@^6.0.1, acorn@^6.2.1:
   version "6.4.0"
@@ -1865,11 +1858,6 @@ boolbase@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/boolbase/-/boolbase-1.0.0.tgz#68dff5fbe60c51eb37725ea9e3ed310dcc1e776e"
   integrity sha1-aN/1++YMUes3cl6p4+0xDcwed24=
-
-bootstrap@4.1.3:
-  version "4.1.3"
-  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.1.3.tgz#0eb371af2c8448e8c210411d0cb824a6409a12be"
-  integrity sha512-rDFIzgXcof0jDyjNosjv4Sno77X4KuPeFxG2XZZv1/Kc8DRVGVADdoQyyOVDwPqL36DDmtCQbrpMCqvpPLJQ0w==
 
 bootstrap@4.4.1, bootstrap@^4.3.1:
   version "4.4.1"
